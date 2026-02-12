@@ -7,7 +7,7 @@
 
 Aplicação completa para gestão de veículos, controle de abastecimentos, manutenções preventivas e despesas financeiras. O sistema oferece uma visão clara dos custos de propriedade, ajudando proprietários a manterem seus veículos em dia.
 
-![Dashboard Preview](file:///C:/Users/ASINT_USER/.gemini/antigravity/brain/6663a652-0985-4e17-8c12-0ba767e764e7/login_and_dashboard_1770903168133.webp)
+![Dashboard Preview](docs/images/dashboard-preview.webp)
 
 ## 🚀 Visão Geral e Arquitetura
 
