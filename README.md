@@ -1,61 +1,89 @@
 # Meu Veículo em Dia 🚗
 
-Application to track vehicle costs, fuel efficiency, and maintenance. Built with Laravel 12 (API), Vue 3, and TailwindCSS.
+Aplicação moderna para gestão completa de veículos, controle de abastecimentos, manutenções e despesas financeiras. Construído com **Laravel 12 (API)** e **Vue 3 (Composition API)** seguindo os princípios do **Material Design 3**.
 
-## Features
+## 🚀 Tecnologias
 
-- **Auth**: User registration and login (Sanctum).
-- **Vehicles**: Manage multiple vehicles (Brand, Model, Year, Fuel Type).
-- **Combustível**: Track refuelling (Liters, Price, Odometer, Full Tank).
-- **Dashboard**: View total costs, monthly spending, and vehicle count.
+- **Backend**: Laravel 12, Sanctum (Auth), SQLite/MySQL.
+- **Frontend**: Vue 3, Pinia (State Management), Vue Router.
+- **Design**: CSS Nativo com variáveis (Custom Properties) implementando Material Design 3.
+- **Ícones**: Material Symbols Rounded.
 
-## Prerequisites
+## ✨ Funcionalidades
 
+- **Autenticação**: Login e Registro de usuários seguro.
+- **Gestão de Veículos**: Cadastro completo (Marca, Modelo, Ano, Placa, Tipo de Combustível).
+- **Controle de Abastecimento**: Registro detalhado com cálculo automático de autonomia e custos.
+- **Manutenções**: Histórico de serviços realizados (Troca de óleo, Pneus, Revisões).
+- **Despesas Extras**: Controle de IPVA, Seguro, Multas e outros gastos.
+- **Lembretes**: Notificações para próximas manutenções e pagamentos.
+- **Relatórios**: Visão gráfica e detalhada dos custos por mês e por categoria.
+- **Dashboard**: Visão geral rápida da frota e status atual.
+
+## 🛠️ Instalação e Configuração
+
+### Pré-requisitos
 - PHP 8.2+
 - Composer
 - Node.js & NPM
-- SQLite (enabled in `php.ini`)
 
-## Setup
+### Passo a Passo
 
-1.  **Install PHP Dependencies**:
+1.  **Clone o repositório**:
+    ```bash
+    git clone https://github.com/SEU_USUARIO/meu-veiculo.git
+    cd meu-veiculo
+    ```
+
+2.  **Instale as dependências do Backend**:
     ```bash
     composer install
     ```
 
-2.  **Install Node Dependencies**:
+3.  **Instale as dependências do Frontend**:
     ```bash
     npm install
     ```
 
-3.  **Environment Setup**:
+4.  **Configure o ambiente**:
     ```bash
     cp .env.example .env
     php artisan key:generate
     touch database/database.sqlite
-    php artisan migrate
     ```
 
-## Running the Application
-
-You need two terminals:
-
-1.  **Frontend (Vite dev server)**:
+5.  **Execute as migrações e o Seeder (Dados de teste)**:
     ```bash
-    npm run dev
+    php artisan migrate --seed
     ```
 
-2.  **Backend (Laravel server)**:
-    ```bash
-    php artisan serve
-    ```
+## ▶️ Executando o Projeto
 
-Access the application at `http://localhost:8000`.
+Você precisará de dois ternimais rodando simultaneamente:
 
-## API Documentation
+**Terminal 1 (Backend):**
+```bash
+php artisan serve
+```
 
-- `POST /api/register` - Create account
-- `POST /api/login` - Authenticate
-- `GET /api/vehicles` - List vehicles
-- `POST /api/vehicles` - Add vehicle
-- `GET /api/fuel-entries` - List fuel entries
+**Terminal 2 (Frontend):**
+```bash
+npm run dev
+```
+
+Acesse a aplicação em: `http://localhost:8000`
+
+## 📚 Estrutura do Projeto
+
+- `app/Models`: Modelos Eloquent (Vehicle, FuelEntry, Maintenance, Expense, etc).
+- `app/Http/Controllers`: Lógica de negócios da API.
+- `resources/js/components`: Componentes Vue reutilizáveis (ModalDialog, ConfirmModal, etc).
+- `resources/js/views`: Páginas da aplicação (Dashboard, VehicleList, Reports).
+- `resources/js/stores`: Gerenciamento de estado com Pinia.
+
+## 🎨 Design System
+
+O projeto utiliza um sistema de design próprio baseado em variáveis CSS para fácil customização e suporte a temas (Claro/Escuro).
+- Cores semânticas (`--md-primary`, `--md-error`, etc).
+- Tipografia responsiva.
+- Componentes com animações fluídas (Modais, Cards).
