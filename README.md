@@ -1,31 +1,74 @@
 # Meu Veículo em Dia 🚗
 
-Aplicação moderna para gestão completa de veículos, controle de abastecimentos, manutenções e despesas financeiras. Construído com **Laravel 12 (API)** e **Vue 3 (Composition API)** seguindo os princípios do **Material Design 3**.
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 
-## 🚀 Tecnologias
+Aplicação completa para gestão de veículos, controle de abastecimentos, manutenções preventivas e despesas financeiras. O sistema oferece uma visão clara dos custos de propriedade, ajudando proprietários a manterem seus veículos em dia.
 
-- **Backend**: Laravel 12, Sanctum (Auth), SQLite/MySQL.
-- **Frontend**: Vue 3, Pinia (State Management), Vue Router.
-- **Design**: CSS Nativo com variáveis (Custom Properties) implementando Material Design 3.
-- **Ícones**: Material Symbols Rounded.
+![Dashboard Preview](file:///C:/Users/ASINT_USER/.gemini/antigravity/brain/6663a652-0985-4e17-8c12-0ba767e764e7/login_and_dashboard_1770903168133.webp)
 
-## ✨ Funcionalidades
+## 🚀 Visão Geral e Arquitetura
 
-- **Autenticação**: Login e Registro de usuários seguro.
-- **Gestão de Veículos**: Cadastro completo (Marca, Modelo, Ano, Placa, Tipo de Combustível).
-- **Controle de Abastecimento**: Registro detalhado com cálculo automático de autonomia e custos.
-- **Manutenções**: Histórico de serviços realizados (Troca de óleo, Pneus, Revisões).
-- **Despesas Extras**: Controle de IPVA, Seguro, Multas e outros gastos.
-- **Lembretes**: Notificações para próximas manutenções e pagamentos.
-- **Relatórios**: Visão gráfica e detalhada dos custos por mês e por categoria.
-- **Dashboard**: Visão geral rápida da frota e status atual.
+Este projeto segue uma arquitetura moderna de **Monólito Modular** com separação clara entre Frontend e Backend:
 
-## 🛠️ Instalação e Configuração
+- **Backend (API Restful)**: Desenvolvido em **Laravel 12**, responsável pela regra de negócios, autenticação via **Sanctum**, validação de dados e interação com o banco de dados (SQLite para desenvolvimento, MySQL para produção).
+- **Frontend (SPA)**: Construído com **Vue 3 (Composition API)** e **Vite**, utilizando **Pinia** para gerenciamento de estado global e **Vue Router** para navegação.
+- **Design System**: Interface customizada baseada nos princípios do **Material Design 3**, implementada com CSS nativo e variáveis para fácil manutenção e consistência visual.
+
+## ✨ Funcionalidades Detalhadas
+
+### 🔐 Autenticação e Segurança
+- Sistema completo de login e registro de usuários.
+- Proteção de rotas via tokens Sanctum.
+- Sessão persistente e segura.
+
+### 🚙 Gestão de Frotas
+- Cadastro ilimitado de veículos.
+- Suporte a múltiplos tipos de combustível (Gasolina, Etanol, Diesel, Flex, Elétrico).
+- Edição rápida de detalhes do veículo via modal.
+
+### ⛽ Controle de Abastecimento
+- Registro de cada abastecimento com data, posto, valor por litro e total.
+- **Cálculo de Autonomia**: O sistema calcula automaticamente a média de consumo (km/l) baseada no odômetro e litros abastecidos.
+- Histórico completo de abastecimentos por veículo.
+
+### 🔧 Manutenção Preventiva
+- Agendamento e registro de serviços (Troca de óleo, Revisão, Pneus, Freios).
+- Controle de quilometragem da próxima revisão.
+- Histórico de custos com manutenção.
+
+### 💰 Gestão Financeira (Despesas)
+- Categorização de gastos extras (IPVA, Seguro, Multas, Estacionamento, Lavagem).
+- Visão clara do Custo Total de Propriedade (TCO).
+
+### 📊 Dashboard e Relatórios
+- Cards com resumo da frota.
+- Gráficos de custos mensais.
+- Comparativo de gastos por categoria.
+
+## 🛠️ Tecnologias Utilizadas
+
+### Backend
+- **Framework**: Laravel 12.x
+- **Banco de Dados**: SQLite (Dev) / MySQL (Prod)
+- **Autenticação**: Laravel Sanctum
+
+### Frontend
+- **Framework**: Vue.js 3.5+
+- **Build Tool**: Vite
+- **State Management**: Pinia
+- **Router**: Vue Router 4
+- **HTTP Client**: Axios
+- **Ícones**: Google Material Symbols
+
+## 📦 Instalação e Configuração
 
 ### Pré-requisitos
-- PHP 8.2+
+- PHP 8.2 ou superior
 - Composer
-- Node.js & NPM
+- Node.js (LTS) & NPM
 
 ### Passo a Passo
 
@@ -52,38 +95,47 @@ Aplicação moderna para gestão completa de veículos, controle de abasteciment
     touch database/database.sqlite
     ```
 
-5.  **Execute as migrações e o Seeder (Dados de teste)**:
+5.  **Execute as migrações e o Seeder**:
+    *O comando abaixo cria as tabelas e popula o banco com dados de teste para facilitar a visualização.*
     ```bash
     php artisan migrate --seed
     ```
 
-## ▶️ Executando o Projeto
+## ▶️ Executando a Aplicação
 
-Você precisará de dois ternimais rodando simultaneamente:
+Para rodar o projeto em ambiente de desenvolvimento, você precisará de dois terminais:
 
-**Terminal 1 (Backend):**
+**Terminal 1 (Servidor API):**
 ```bash
 php artisan serve
 ```
 
-**Terminal 2 (Frontend):**
+**Terminal 2 (Servidor Frontend):**
 ```bash
 npm run dev
 ```
 
 Acesse a aplicação em: `http://localhost:8000`
 
-## 📚 Estrutura do Projeto
+## 📚 Documentação da API
 
-- `app/Models`: Modelos Eloquent (Vehicle, FuelEntry, Maintenance, Expense, etc).
-- `app/Http/Controllers`: Lógica de negócios da API.
-- `resources/js/components`: Componentes Vue reutilizáveis (ModalDialog, ConfirmModal, etc).
-- `resources/js/views`: Páginas da aplicação (Dashboard, VehicleList, Reports).
-- `resources/js/stores`: Gerenciamento de estado com Pinia.
+Principais endpoints disponíveis:
 
-## 🎨 Design System
+| Método | Endpoint | Descrição |
+| :--- | :--- | :--- |
+| `POST` | `/api/register` | Cria uma nova conta de usuário |
+| `POST` | `/api/login` | Autentica o usuário e retorna token |
+| `GET` | `/api/vehicles` | Lista todos os veículos do usuário |
+| `POST` | `/api/vehicles` | Cadastra um novo veículo |
+| `GET` | `/api/vehicles/{id}` | Detalhes de um veículo específico |
+| `GET` | `/api/fuel-entries` | Lista abastecimentos |
+| `POST` | `/api/fuel-entries` | Registra novo abastecimento |
+| `GET` | `/api/maintenances` | Lista manutenções |
 
-O projeto utiliza um sistema de design próprio baseado em variáveis CSS para fácil customização e suporte a temas (Claro/Escuro).
-- Cores semânticas (`--md-primary`, `--md-error`, etc).
-- Tipografia responsiva.
-- Componentes com animações fluídas (Modais, Cards).
+## 🤝 Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests com melhorias.
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
