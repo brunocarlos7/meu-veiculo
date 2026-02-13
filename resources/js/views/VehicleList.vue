@@ -63,6 +63,13 @@
             <span class="action-label">Abastecer</span>
           </router-link>
           
+          <router-link :to="`/vehicles/${vehicle.id}/mileage`" class="action-item">
+            <div class="action-icon-bg mileage">
+              <span class="material-symbols-rounded">speed</span>
+            </div>
+            <span class="action-label">Km Diário</span>
+          </router-link>
+          
           <router-link :to="`/vehicles/${vehicle.id}/maintenance`" class="action-item">
             <div class="action-icon-bg maintenance">
               <span class="material-symbols-rounded">build</span>
@@ -363,8 +370,8 @@ onMounted(() => vehicleStore.fetchVehicles());
 
 /* Action Grid */
 .actions-grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  padding: 16px 24px; gap: 16px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  padding: 16px 24px; gap: 12px;
 }
 .action-item {
   display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -378,6 +385,7 @@ onMounted(() => vehicleStore.fetchVehicles());
   color: white; font-size: 24px;
 }
 .action-icon-bg.fuel { background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2); }
+.action-icon-bg.mileage { background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.2); }
 .action-icon-bg.maintenance { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.2); }
 .action-icon-bg.expense { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.2); }
 .action-label { font-size: 12px; font-weight: 600; color: var(--md-on-surface-variant); }

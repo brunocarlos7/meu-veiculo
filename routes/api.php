@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\ReminderController;
 use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\MileageEntryController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -29,4 +30,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::put('/profile', [App\Http\Controllers\Api\ProfileController::class, 'update']);
     Route::put('/profile/password', [App\Http\Controllers\Api\ProfileController::class, 'updatePassword']);
+
+    Route::get('vehicles/{vehicle}/mileage', [MileageEntryController::class, 'index']);
+    Route::post('vehicles/{vehicle}/mileage', [MileageEntryController::class, 'store']);
+    Route::put('mileage/{mileageEntry}', [MileageEntryController::class, 'update']);
+    Route::delete('mileage/{mileageEntry}', [MileageEntryController::class, 'destroy']);
 });

@@ -49,6 +49,11 @@ const router = createRouter({
                     component: () => import('../views/FuelForm.vue'),
                 },
                 {
+                    path: 'vehicles/:id/mileage',
+                    name: 'MileageTracker',
+                    component: () => import('../views/MileageTracker.vue'),
+                },
+                {
                     path: 'vehicles/:id/maintenance',
                     name: 'MaintenanceList',
                     component: () => import('../views/MaintenanceList.vue'),

@@ -42,4 +42,9 @@ class Vehicle extends Model
     {
         return $this->hasMany(Reminder::class);
     }
+
+    public function mileageEntries()
+    {
+        return $this->hasMany(MileageEntry::class);
+    }
 }
