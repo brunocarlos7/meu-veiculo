@@ -19,12 +19,29 @@
         
         <div class="md-input-group">
           <label for="password">Senha</label>
-          <input id="password" type="password" v-model="form.password" required class="md-input-outlined" placeholder="Sua senha">
+          <div class="password-wrapper">
+            <input 
+              id="password" 
+              :type="showPassword ? 'text' : 'password'" 
+              v-model="form.password" 
+              required 
+              class="md-input-outlined password-input" 
+              placeholder="Sua senha"
+            >
+            <button type="button" @click="showPassword = !showPassword" class="password-toggle">
+              <span class="material-symbols-rounded">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
+            </button>
+          </div>
         </div>
 
         <div v-if="authStore.errors.length" class="auth-error animate-in">
-          <span class="material-symbols-rounded" style="font-size: 18px;">error</span>
-          {{ authStore.errors[0] }}
+          <div class="error-icon-wrapper">
+            <span class="material-symbols-rounded">error</span>
+          </div>
+          <div class="error-content">
+            <span class="error-title">Erro de autenticação</span>
+            <span class="error-message">{{ authStore.errors[0] }}</span>
+          </div>
         </div>
 
         <button type="submit" :disabled="authStore.loading" class="md-btn-filled auth-submit">
@@ -51,6 +68,7 @@ import { useRouter } from 'vue-router';
 const authStore = useAuthStore();
 const router = useRouter();
 const form = ref({ email: '', password: '' });
+const showPassword = ref(false);
 
 const handleLogin = async () => {
   const success = await authStore.login(form.value);
@@ -105,16 +123,47 @@ const handleLogin = async () => {
   flex-direction: column;
   gap: 20px;
 }
-.auth-error {
+
+/* Password Toggle */
+.password-wrapper { position: relative; }
+.password-input { padding-right: 48px; }
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.password-toggle:hover { background: rgba(0,0,0,0.05); color: var(--md-on-surface); }
+
+/* Error Alert */
+.auth-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
   background: var(--md-error-container);
   color: var(--md-on-error-container);
-  border-radius: var(--md-shape-sm);
+  border-radius: var(--md-shape-md);
   font-size: 14px;
+  border: 1px solid rgba(0,0,0,0.05);
 }
+.error-icon-wrapper {
+  display: flex; align-items: center; justify-content: center;
+  height: 20px; /* Align with text line-height roughly */
+}
+.error-content { display: flex; flex-direction: column; gap: 2px; }
+.error-title { font-weight: 700; font-size: 14px; }
+.error-message { font-size: 13px; opacity: 0.9; }
 .auth-submit {
   width: 100%;
   padding: 14px;

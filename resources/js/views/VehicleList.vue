@@ -416,8 +416,7 @@ onMounted(() => vehicleStore.fetchVehicles());
 .modal-form { display: flex; flex-direction: column; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .modal-actions {
-  display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; padding-top: 16px;
-  border-top: 1px solid var(--md-outline-variant);
+  display: flex; justify-content: flex-end; gap: 12px; margin-top: 32px;
 }
 .form-error {
   display: flex; align-items: center; gap: 8px; padding: 12px 16px;

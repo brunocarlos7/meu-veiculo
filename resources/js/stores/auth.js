@@ -25,7 +25,11 @@ export const useAuthStore = defineStore('auth', {
 
                 return true;
             } catch (error) {
-                this.errors = error.response?.data?.errors || ['Login failed'];
+                if (error.response?.data?.errors) {
+                    this.errors = Object.values(error.response.data.errors).flat();
+                } else {
+                    this.errors = [error.response?.data?.message || 'Login falhou'];
+                }
                 return false;
             } finally {
                 this.loading = false;
@@ -44,7 +48,11 @@ export const useAuthStore = defineStore('auth', {
 
                 return true;
             } catch (error) {
-                this.errors = error.response?.data?.errors || ['Registration failed'];
+                if (error.response?.data?.errors) {
+                    this.errors = Object.values(error.response.data.errors).flat();
+                } else {
+                    this.errors = [error.response?.data?.message || 'Registro falhou'];
+                }
                 return false;
             } finally {
                 this.loading = false;

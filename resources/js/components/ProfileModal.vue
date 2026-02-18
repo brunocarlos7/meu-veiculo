@@ -1,6 +1,6 @@
 <template>
   <div v-if="show" class="modal-overlay" @click.self="$emit('close')">
-    <div class="modal-surface animate-pop">
+    <div class="modal-surface">
       <div class="modal-header-hero">
         <button @click="$emit('close')" class="modal-close-hero">
           <span class="material-symbols-rounded">close</span>

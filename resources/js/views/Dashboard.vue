@@ -2,7 +2,7 @@
   <div class="dashboard">
     <!-- Metrics Grid -->
     <div class="metrics-grid">
-      <div class="metric-card animate-in stagger-1">
+      <div class="metric-card">
         <div class="metric-icon" style="background: var(--md-primary-container); color: var(--md-on-primary-container);">
           <span class="material-symbols-rounded">garage</span>
         </div>
@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <div class="metric-card animate-in stagger-2">
+      <div class="metric-card">
         <div class="metric-icon" style="background: var(--md-secondary-container); color: var(--md-on-secondary-container);">
           <span class="material-symbols-rounded">calendar_month</span>
         </div>
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="metric-card animate-in stagger-3">
+      <div class="metric-card">
         <div class="metric-icon" style="background: var(--md-tertiary-container); color: var(--md-on-tertiary-container);">
           <span class="material-symbols-rounded">payments</span>
         </div>
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="metric-card animate-in stagger-4">
+      <div class="metric-card">
         <div class="metric-icon" style="background: #DBEAFE; color: #1E40AF;">
           <span class="material-symbols-rounded">speed</span>
         </div>
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <div class="metric-card animate-in stagger-4">
+      <div class="metric-card">
         <div class="metric-icon" style="background: #FEF3C7; color: #92400E;">
           <span class="material-symbols-rounded">price_change</span>
         </div>
@@ -64,7 +64,7 @@
     </div>
 
     <!-- Cost Breakdown -->
-    <div class="breakdown-grid animate-in" style="animation-delay: 200ms;">
+    <div class="breakdown-grid" style="">
       <div class="breakdown-card md-card">
         <div class="breakdown-header">
           <span class="material-symbols-rounded" style="color: var(--md-primary);">local_gas_station</span>
@@ -89,7 +89,7 @@
     </div>
 
     <!-- Quick Actions -->
-    <div class="md-card quick-card animate-in" style="animation-delay: 300ms;">
+    <div class="md-card quick-card" style="">
       <div class="quick-content">
         <div class="quick-text">
           <h2>Acesso rápido</h2>
