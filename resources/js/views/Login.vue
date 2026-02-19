@@ -34,16 +34,6 @@
           </div>
         </div>
 
-        <div v-if="authStore.errors.length" class="auth-error animate-in">
-          <div class="error-icon-wrapper">
-            <span class="material-symbols-rounded">error</span>
-          </div>
-          <div class="error-content">
-            <span class="error-title">Erro de autenticação</span>
-            <span class="error-message">{{ authStore.errors[0] }}</span>
-          </div>
-        </div>
-
         <button type="submit" :disabled="authStore.loading" class="md-btn-filled auth-submit">
           <span v-if="authStore.loading" class="material-symbols-rounded spinning">progress_activity</span>
           {{ authStore.loading ? 'Entrando...' : 'Entrar' }}
@@ -64,15 +54,25 @@
 import { ref } from 'vue';
 import { useAuthStore } from '../stores/auth';
 import { useRouter } from 'vue-router';
+import { useToast } from '../composables/useToast';
 
 const authStore = useAuthStore();
 const router = useRouter();
+const toast = useToast();
 const form = ref({ email: '', password: '' });
 const showPassword = ref(false);
 
 const handleLogin = async () => {
   const success = await authStore.login(form.value);
-  if (success) router.push('/dashboard');
+  if (success) {
+    toast.success('Login realizado com sucesso!');
+    router.push('/dashboard');
+  } else {
+    // Show toast for errors
+    if (authStore.errors.length) {
+        authStore.errors.forEach(err => toast.error(err));
+    }
+  }
 };
 </script>
 
@@ -145,25 +145,6 @@ const handleLogin = async () => {
 }
 .password-toggle:hover { background: rgba(0,0,0,0.05); color: var(--md-on-surface); }
 
-/* Error Alert */
-.auth-error {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
-  background: var(--md-error-container);
-  color: var(--md-on-error-container);
-  border-radius: var(--md-shape-md);
-  font-size: 14px;
-  border: 1px solid rgba(0,0,0,0.05);
-}
-.error-icon-wrapper {
-  display: flex; align-items: center; justify-content: center;
-  height: 20px; /* Align with text line-height roughly */
-}
-.error-content { display: flex; flex-direction: column; gap: 2px; }
-.error-title { font-weight: 700; font-size: 14px; }
-.error-message { font-size: 13px; opacity: 0.9; }
 .auth-submit {
   width: 100%;
   padding: 14px;
